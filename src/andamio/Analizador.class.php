@@ -1,0 +1,62 @@
+<?php
+class Analizador{
+
+    protected $conn;
+    protected $archivo_instrucciones;
+    protected $id;
+
+    protected $buffer;
+
+    /**
+     * 
+     */
+    function __construct($conn,$archivo_instrucciones,$id){
+
+        $this->conn=$conn;
+        $this->archivo_instrucciones = $archivo_instrucciones;
+        $this->id=$id;
+
+        $this->construccion();
+    }
+
+    /**
+     * Metodo que analiza un CSV obtiene las instrucciones por renglon que corresponden a un campo y luego llama al constructor del campo
+     */
+    protected function construccion(){
+
+        $af=file($this->archivo_instrucciones);
+
+        $tam = count($af);
+
+        for($i=1;$i<$tam;$i++){
+
+            $aux= explode(",",$af[$i]);
+
+            switch($aux[1]){
+                case 'textline':
+                    $this->procesaTextLine($aux);
+                break;
+                default:
+                break;
+            }
+
+
+
+        }
+
+
+    }
+
+
+    protected function procesaTextLine($acampo){
+        $buff=$acampo[2];
+        $buff.='<input type="text" name="'.$acampo[0].'" value="">';
+
+        $this->buffer.=$buff;
+    }
+
+    public function obtenBuffer(){
+        return $this->buffer;
+    }
+
+}

@@ -1,0 +1,3 @@
+campo, tipo, "nombre comun"
+texto1, textline,"campo 1" 
+texto2, textline,"campo 2" 
