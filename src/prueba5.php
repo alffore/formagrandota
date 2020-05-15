@@ -24,11 +24,16 @@
 
     //console.log(oa_celdas)
 
-    function manejaEvento(e){
+    async function manejaEvento(e){
 
         console.log(e.target)
         console.log(e.target.value)
         console.log(`name: ${e.target.name} value: ${e.target.value}`)
+
+        const consulta = await fetch(`./proceso1.php?name=${e.target.name}&value=${e.target.value}`)
+        const res= await consulta.text()
+
+        console.log(`resultado: ${res}`)
     }
 
 
