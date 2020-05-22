@@ -1,3 +1,6 @@
-campo, tipo, "nombre comun"
-texto1, textline,"campo 1" 
-texto2, textline,"campo 2" 
+campo| tipo| nombre comun
+texto1|textline|campo 1 
+texto2|textline|campo 2 
+multiplec|textlinem|campomultiple|10
+edad|textline|Edad del usuario
+participantes|textlinem|Participantes|20

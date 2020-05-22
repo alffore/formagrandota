@@ -30,11 +30,17 @@ class Analizador{
 
         for($i=1;$i<$tam;$i++){
 
-            $aux= explode(",",$af[$i]);
+            $aux= explode("|",$af[$i]);
 
-            switch($aux[1]){
+
+            $tc=trim($aux[1]);
+            
+            switch($tc){
                 case 'textline':
                     $this->procesaTextLine($aux);
+                break;
+                case 'textlinem':
+                    $this->procesaTextLineM($aux);
                 break;
                 default:
                 break;
@@ -44,16 +50,31 @@ class Analizador{
 
         }
 
-
     }
 
 
     protected function procesaTextLine($acampo){
-        $buff=$acampo[2];
-        $buff.='<input type="text" name="'.$acampo[0].'" value="">';
+        $buff='<div class="componente">';
+        $buff.='<div>'.$acampo[2].'</div>';
+        $buff.='<div><input type="text" name="'.$acampo[0].'" value=""></div>';
+        $buff.='</div>';
 
         $this->buffer.=$buff;
     }
+
+
+
+    protected function procesaTextLineM($acampo){
+        $buff='<div class="componente multi">';
+        $buff.='<div>'.$acampo[2].'</div>';
+        for($i=0;$i<$acampo[3];$i++){
+            $buff.='<div><input type="text" name="'.$acampo[0]."_$i".'" value=""></div>';
+        }
+        $buff.='</div>';
+
+        $this->buffer.=$buff;
+    }
+
 
     public function obtenBuffer(){
         return $this->buffer;
