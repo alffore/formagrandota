@@ -1,11 +1,15 @@
 <?php
 
 $a=$_GET;
+$s='';
 
-for($i=0;$i<$_GET['value'];$i++){
+if(isset($_GET['value'])){
 
-$s.=$i;
+	for($i=0;$i<$_GET['value'];$i++){
 
+	$s.=$i;
+
+	}
 }
 
 $a["s"]=$s;
