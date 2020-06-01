@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenido">
+
+    </div>
+    <script>
+
+        const obj_cont = document.querySelector('#contenido')
+        let buff=""
+        for(let i=0;i<=10000;i++){
+            buff+=`oración ${i}<br>`
+        }
+
+
+        obj_cont.innerHTML=buff
+
+
+    </script>
+</body>
+</html>

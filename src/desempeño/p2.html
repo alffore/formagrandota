@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+
+        <script>
+            var dimX = 1000;
+            var dimY = 1000;
+
+            var delta = 0.00003
+            var paso = delta / dimX
+
+            var xcentro = -0.812223315621338
+            var ycentro = -0.185453926110785
+
+            var xcmax = xcentro + delta / 2.0
+            var xcmin = xcentro - delta / 2.0
+
+            var ycmin = ycentro - delta / 2.0
+            var ycmax = ycentro + delta / 2.0
+
+            var maxiter = 300;
+
+            var aColor = []
+
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+
+
+            for (let i = 0; i <= maxiter; i++) {
+                aColor.push(getRandomColor())
+            }
+
+
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+
+            for (let x = xcmin; x <= xcmax; x += paso) {
+                for (let y = ycmin; y <= ycmax; y += paso) {
+                    let i = iterador(x, y)
+                    pintaPunto(ctx, xc2xp(x), yc2yp(y), aColor[i])
+                }
+            }
+
+            function iterador(xc, yc) {
+
+                let x = xc;
+                let y = yc;
+                i = 1;
+                while (x * x + y * y < 4 && i < maxiter) {
+                    let xant = x
+                    x = x * x - y * y + xc
+                    y = 2 * xant * y + yc
+
+                    i++
+                }
+                return i
+            }
+
+            function xc2xp(x) {
+                return dimX * (0.5 + (x - xcentro) / delta)
+            }
+
+            function yc2yp(y) {
+                return dimY * (0.5 + (ycentro - y) / delta)
+            }
+
+            // función que pinta un punto en el canvas
+            function pintaPunto(ctx, x, y, color) {
+                ctx.fillStyle = color
+                ctx.fillRect(x, y, 1, 1)
+            }
+        </script>
+    </body>
+</html>
