@@ -14,22 +14,21 @@
             margin-left: auto;
             margin-right: auto;
             border: 1px solid #ccc;
-
         }
 
         .renglon{
             width: 100%;
             height: 30px;
+            display: flex;/*add*/
             border: 1px solid #f00;
-            display: flex;
         }
 
         .celda{
-            min-width: 10%;
+           min-width: 9.6%;/*ajustar*/
             height: 30px;
             border: 1px solid #0f0;
+     		margin:0px auto;/*add*/
         }
-
     </style>
 
 </head>
@@ -45,7 +44,6 @@
 
             for($i=0;$i<$ncx;$i++){
                 $buff.='<div class="celda">';
-
                 $buff.='</div>';
             }
 
