@@ -25,7 +25,7 @@
         }
 
         .celda{
-            min-width: 10%;
+            /*min-width: 10%;*/
             height: 30px;
             /*border: 1px solid #0f0;*/
         }
@@ -36,16 +36,42 @@
 <body>
     <div id="hojaceldas">    
     <?php
+
+
         $ncx = 10;
         $ncy =5;
+
+        $atipoxcelda=[0=>'texto',3=>'texto',1=>'entero',2=>'selector'];
+
 
         $buff="";
         for($j=0;$j<$ncy;$j++){
             $buff.='<div class="renglon">';
 
             for($i=0;$i<$ncx;$i++){
+
                 $buff.='<div class="celda">';
-                $buff.='<input type="text" name="" id="" value="">';    
+                $tipo=$atipoxcelda[$i];
+                $id="c_".$i."_".$j;
+
+                switch($tipo){
+                    case 'entero':
+                        $id.="_e";
+                        $buff.='<input type="number" name="'.$id.'" id="'.$id.'" value="">'; 
+                    break;
+                    case 'selector':
+                        $id.="_s";
+                        $buff.='<input type="text" name="'.$id.'" id="'.$id.'" value="" class="selec">'; 
+                    break;
+                    case 'texto':
+                    default:
+                        $id.="_t";
+                        $buff.='<input type="text" name="'.$id.'" id="'.$id.'"  value="">'; 
+                    break;
+                }
+                   
+                
+                
                 $buff.='</div>';
             }
 
@@ -55,5 +81,6 @@
         echo $buff;
     ?>
     </div>
+    <script src="app.js" ></script>
 </body>
 </html>
