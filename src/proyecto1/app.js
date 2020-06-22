@@ -1,7 +1,7 @@
 
 var aobjselec = document.querySelectorAll(".selec")
 
-var avselec=['valor1','valor2','valor3']
+var avselec=['valor1///////////////////----','valor2++++++++++++++','valor3------------------']
 
 
 aobjselec.forEach(e => { 
